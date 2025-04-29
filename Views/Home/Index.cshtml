@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Care For Your Friend</h1>
+        <p>Your pet's health is our top priority. We provide top-notch care for your furry friends!</p>
+        <a class="cta-btn" asp-area="" asp-controller="Services" asp-action="Appointment">Book an Appointment</a>
+    </div>
+</section>
+
+<!-- About Us Section -->
+<section class="about-us">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>We are a team of experienced veterinarians dedicated to providing the best care for your pets.</p>
+        <a class="read-more" asp-area="" asp-controller="Home" asp-action="AboutUs">Read More</a>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="container">
+        <h2>What we offer</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="/images/telemedicine.jpg" alt="Service 1">
+                <h3>Telemedicine</h3>
+                <p>Video routine checkups to ensure your pet stays healthy and happy.</p>
+            </div>
+            <div class="service-card">
+                <img src="/images/emergency.jpg" alt="Service 2">
+                <h3>Emergency Care</h3>
+                <p>We provide urgent care for your pet in emergencies.</p>
+            </div>
+            <div class="service-card">
+                <img src="/images/dog&cat.jpg" alt="Service 3">
+                <h3>Biometric Id Services</h3>
+                <p>Scan your pet nose for identification.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information Section -->
+<section class="contact-info">
+    <div class="container">
+        <h2>Find Us Here</h2>
+        <div class="contact-details">
+            <div class="map">
+                <!-- Embed Google Map here -->
+                <iframe src="https://www.google.com/maps/embed?pb=..." width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="hours">
+                <h3>Our Opening Hours</h3>
+                <ul>
+                    <li>Monday: 9:00 AM - 6:00 PM</li>
+                    <li>Tuesday: 9:00 AM - 6:00 PM</li>
+                    <li>Wednesday: 9:00 AM - 6:00 PM</li>
+                    <li>Thursday: 9:00 AM - 6:00 PM</li>
+                    <li>Friday: 9:00 AM - 6:00 PM</li>
+                    <li>Saturday: 10:00 AM - 4:00 PM</li>
+                    <li>Sunday: Closed</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,176 @@
+﻿@{
+    ViewData["Title"] = "Appointment Booking Page";
+}
+
+<style>
+    body {
+        background-color: #f5f7fa;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 40px auto;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .container-booking, .appointment-history {
+        flex: 1;
+        min-width: 300px;
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    h1, h2 {
+        text-align: center;
+        color: peru;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="time"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 15px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: peru;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+        button:hover {
+            background-color: saddlebrown;
+        }
+
+    .history-item {
+        background-color: #f9f9f9;
+        border-left: 5px solid peru;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+        .history-item strong {
+            color: #333;
+        }
+
+        .history-item small {
+            display: block;
+            color: #777;
+            margin-top: 4px;
+        }
+</style>
+
+<div class="page-wrapper">
+    <!-- Booking Form -->
+    <div class="container-booking">
+        <h1>Book a Vet Appointment</h1>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="ownerName">Owner's Full Name</label>
+                <input type="text" id="ownerName" name="ownerName" placeholder="e.g. John Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ownerEmail">Owner's Email</label>
+                <input type="email" id="ownerEmail" name="ownerEmail" placeholder="e.g. john@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="petName">Pet's Name</label>
+                <input type="text" id="petName" name="petName" placeholder="e.g. Bella" required>
+            </div>
+
+            <div class="form-group">
+                <label for="petSpecies">Species</label>
+                <input type="text" id="petSpecies" name="petSpecies" placeholder="e.g. Dog" required>
+            </div>
+
+            <div class="form-group">
+                <label for="petBreed">Breed</label>
+                <input type="text" id="petBreed" name="petBreed" placeholder="e.g. Golden Retriever" required>
+            </div>
+
+            <div class="form-group">
+                <label for="appointmentDate">Date</label>
+                <input type="date" id="appointmentDate" name="appointmentDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="appointmentTime">Time</label>
+                <input type="time" id="appointmentTime" name="appointmentTime" required>
+            </div>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+
+    <!-- Appointment History -->
+    <div class="appointment-history">
+        <h2>Appointment History</h2>
+
+        <!-- Example history entries -->
+        <div class="history-item">
+            <strong>Bella</strong> - Dog (Golden Retriever)
+            <small>Owner: John Doe</small>
+            <small>Issue: Dental Problem</small>
+            <small>📅 2025-02-18 at 🕐 10:30 AM</small>
+        </div>
+
+        <div class="history-item">
+            <strong>Bella</strong> - Dog (Golden Retriever)
+            <small>Issue: Dental Treatment</small>
+            <small>📅 2025-03-20 at 🕐 14:00 PM</small>
+        </div>
+
+        <div class="history-item">
+            <strong>Rocky</strong> - Dog (Labrador)
+            <small>Issue: Check-up</small>
+            <small>📅 2025-04-21 at 🕐 09:00 AM</small>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('bookingForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const petName = document.getElementById('petName').value;
+        const appointmentDate = document.getElementById('appointmentDate').value;
+        const appointmentTime = document.getElementById('appointmentTime').value;
+
+        alert(`✅ Appointment successfully booked for ${petName} on ${appointmentDate} at ${appointmentTime}.`);
+
+        document.getElementById('bookingForm').reset();
+    });
+</script>

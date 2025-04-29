@@ -1,0 +1,122 @@
+﻿@model PetProfileApp.ViewModels.PetProfileViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Register a New Pet";
+}
+
+<style>
+    .register-container {
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    }
+
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-control {
+        padding: 10px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .btn-primary {
+        background-color: #28a745;
+        border: none;
+        padding: 12px 20px;
+        font-size: 1.1rem;
+        width: 100%;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+
+    .text-danger {
+        font-size: 0.9rem;
+        margin-top: 5px;
+        display: block;
+    }
+
+    }
+</style>
+
+<div class="register-container">
+    <h2>🐾 Register a New Pet</h2>
+
+    <form asp-action="Create" enctype="multipart/form-data" method="post" novalidate>
+        <div class="form-group">
+            <label asp-for="PetName"></label>
+            <input asp-for="PetName" class="form-control" />
+            <span asp-validation-for="PetName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PetBreed"></label>
+            <input asp-for="PetBreed" class="form-control" />
+            <span asp-validation-for="PetBreed" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PetAge"></label>
+            <input asp-for="PetAge" type="number" class="form-control" />
+            <span asp-validation-for="PetAge" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OwnerName"></label>
+            <input asp-for="OwnerName" class="form-control" />
+            <span asp-validation-for="OwnerName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TelNumber"></label>
+            <input asp-for="TelNumber" class="form-control" />
+            <span asp-validation-for="TelNumber" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="MedicalInfo"></label>
+            <textarea asp-for="MedicalInfo" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PetPhoto">Upload Pet Photo</label>
+            <input asp-for="PetPhoto" type="file" class="form-control" />
+            <span asp-validation-for="PetPhoto" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">📥 Register Pet</button>
+    </form>
+</div>
+
+ <Scripts {
+    await Html.RenderPartialAsync("_ValidationScriptsPartial")
+}></Scripts>

@@ -1,0 +1,117 @@
+﻿@{
+    ViewData["Title"] = "Patient Center";
+}
+
+<style>
+    .patient-center {
+        padding: 60px 20px;
+        background-color: #f4f8fb;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+        .patient-center .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .patient-center h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .patient-center .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+    .feature-card {
+        background-color: #fff;
+        padding: 30px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+        }
+
+    .feature-icon {
+        font-size: 3rem;
+        color: #f4a261;
+        margin-bottom: 20px;
+    }
+
+    .feature-title {
+        font-size: 1.7rem;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .feature-text {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .feature-btn {
+        background-color: peru;
+        color: white;
+        padding: 12px 25px;
+        font-size: 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+    }
+
+        .feature-btn:hover {
+            background-color: saddlebrown;
+        }
+</style>
+
+<section class="patient-center">
+    <div class="container">
+        <h1>🐾 Welcome to Your Pet's Patient Center</h1>
+
+        <div class="grid">
+            <!-- Create Pet Profile -->
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <div class="feature-title">Create Pet Profile</div>
+                <div class="feature-text">Track your pet's health and history by creating a complete medical profile.</div>
+                <a class="feature-btn" asp-controller="PetProfile" asp-action="Create">Create Profile</a>
+            </div>
+
+            <!-- Live Chat -->
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <div class="feature-title">Live Chat</div>
+                <div class="feature-text">Need quick help? Chat with a vet instantly through our live chat feature.</div>
+                <a class="feature-btn" asp-controller="Services" asp-action="Chat">Start Chat</a>
+            </div>
+
+            <!-- Biometric ID -->
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <div class="feature-title">Biometric Identification</div>
+                <div class="feature-text">Scan a pet's photo and we’ll help match it to an existing record if found. Help reunite lost animals with their owners.</div>
+                <a class="feature-btn" asp-controller="PetBiometric" asp-action="Scan">Find Pet</a>
+            </div>
+
+            <!-- Payment -->
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <div class="feature-title">Make a Payment</div>
+                <div class="feature-text">Securely pay for consultations, treatments, and other veterinary services.</div>
+                <a class="feature-btn" asp-controller="Services" asp-action="Payment">Make Payment</a>
+            </div>
+        </div>
+    </div>
+</section>

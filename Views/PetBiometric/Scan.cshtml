@@ -1,0 +1,108 @@
+﻿@model PetProfileApp.Models.PetProfile
+@{
+    ViewData["Title"] = "Scan a Pet";
+}
+
+<style>
+    .scan-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: space-between;
+        padding: 30px;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .scan-form, .scan-result {
+        flex: 1 1 45%;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+        .scan-form h2 {
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+    .instructions {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .alert {
+        margin-top: 20px;
+    }
+
+   
+    .scan-form, .scan-result {
+        flex: 1 1 100%;
+    }
+
+    }
+</style>
+
+<div class="scan-container">
+    <!-- 📸 Left: Upload + Instructions -->
+    <div class="scan-form">
+        <h2>Scan a Pet</h2>
+        <p class="instructions">Upload a photo of a pet's face or nose. If it matches a registered pet, their info will be shown on the right.</p>
+
+        <form asp-action="Scan" method="post" enctype="multipart/form-data">
+            <div class="form-group mb-3">
+                <label for="petImage" class="form-label">Upload Pet Photo</label>
+                <input type="file" name="petImage" id="petImage" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-success">🔍 Scan</button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <strong>Error:</strong> @ViewBag.Error
+            </div>
+        }
+
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-warning">
+                @ViewBag.Message
+            </div>
+        }
+    </div>
+
+    <!-- 🐾 Right: Result -->
+    <div class="scan-result">
+        @if (ViewBag.PetFound != null && ViewBag.PetFound == true)
+        {
+            var pet = (PetProfile)ViewBag.PetProfile;
+            <div class="alert alert-success">
+                <h4 class="mb-3">✅ Pet Found!</h4>
+                <ul class="list-unstyled">
+                    <li><strong>Name:</strong> @pet.PetName</li>
+                    <li><strong>Medical Info:</strong> @pet.MedicalInfo</li>
+                    <li><strong>Owner:</strong> @pet.OwnerName</li>
+                    <li><strong>Phone:</strong> @pet.TelNumber</li>
+                </ul>
+            </div>
+        }
+        else if (ViewBag.PetFound != null && ViewBag.PetFound == false)
+        {
+            <div class="alert alert-warning">
+                ❌ No matching pet was found in the system.
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">Scan result will appear here.</p>
+        }
+    </div>
+</div>

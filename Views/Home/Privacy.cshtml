@@ -1,0 +1,142 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<!-- Privacy Policy Styles -->
+<style>
+    /* General Styles */
+    body {
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .container-privacy {
+        max-width: 900px;
+        margin: 30px auto;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+        font-size: 36px;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+
+    h2 {
+        color: #34495e;
+        font-size: 28px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 5px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.8;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        margin-left: 20px;
+        list-style-type: disc;
+    }
+
+    .important {
+        font-weight: bold;
+        color: #e74c3c;
+    }
+
+    .highlight {
+        font-weight: bold;
+        color: #2980b9;
+    }
+
+    .animal-icon {
+        width: 50px;
+        height: 50px;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+    /* Links */
+    a {
+        color: #2980b9;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+
+    }
+</style>
+
+<div class="container-privacy">
+    <h1><img src="/images/logo.png" alt="Paw Print" class="animal-icon"> Privacy Policy</h1>
+    <p><strong>Last updated:</strong> @DateTime.Now.ToString("MM/dd/yyyy")</p>
+
+    <h2>1. Information We Collect</h2>
+    <p>To make sure your pets get the best care, we collect some important information:</p>
+    <ul>
+        <li><strong>Personal Details:</strong> Your name, email, phone number, and information about your pets.</li>
+        <li><strong>Pet Health Information:</strong> Pet records, vaccinations, treatments, medications, and more.</li>
+        <li><strong>Payment Information:</strong> Billing details to process payments securely for our services.</li>
+        <li><strong>Website Usage:</strong> We track usage patterns to improve our website and services.</li>
+    </ul>
+
+    <h2>2. How We Use Your Information</h2>
+    <p>We use your information for the following reasons, all aimed at providing excellent care for your furry friends:</p>
+    <ul>
+        <li>Manage pet profiles, appointments, and health records.</li>
+        <li>Process payments securely for any services or products you purchase.</li>
+        <li>Send updates regarding your pet's health and upcoming appointments.</li>
+        <li>Improve the overall experience on our website and mobile app.</li>
+    </ul>
+
+    <h2>3. How We Protect Your Information</h2>
+    <p>Your pet’s well-being is our priority, and so is your privacy. Here’s how we keep your data safe:</p>
+    <ul>
+        <li><strong>Encryption:</strong> We encrypt sensitive information like payments and medical records.</li>
+        <li><strong>Access Control:</strong> Only authorized team members can access sensitive information.</li>
+    </ul>
+
+    <h2>4. Sharing Your Information</h2>
+    <p>We understand the importance of your privacy, but in some cases, we may share your information:</p>
+    <ul>
+        <li><strong>Third-Party Service Providers:</strong> We work with trusted partners to help process payments, support, and more.</li>
+        <li><strong>Legal Compliance:</strong> We may need to share data to comply with legal requests.</li>
+        <li><strong>Business Transfers:</strong> If we were to sell our business or merge, your data may be transferred to the new owners.</li>
+    </ul>
+
+    <h2>5. Your Rights</h2>
+    <p>As a pet parent, you have the right to control your information. Here's what you can do:</p>
+    <ul>
+        <li><strong>Access:</strong> You can ask to see what personal data we have about you.</li>
+        <li><strong>Correction:</strong> You can update or correct your personal data.</li>
+        <li><strong>Deletion:</strong> You can ask us to delete your data, with some exceptions.</li>
+        <li><strong>Data Portability:</strong> You can ask for your data in a machine-readable format.</li>
+    </ul>
+
+    <h2>6. Children’s Privacy</h2>
+    <p>We care about pets, not kids under 13. Our services are not intended for children, and we will delete any data we accidentally collect from a child. Please reach out if you believe this happened.</p>
+
+    <h2>7. Changes to This Privacy Policy</h2>
+    <p>From time to time, we may update our Privacy Policy to reflect changes in our services or the law. We’ll always post the most recent version here, so check back to stay informed about how we protect your and your pet’s information.</p>
+
+    <h2>8. Contact Us</h2>
+    <p>If you have any questions, concerns, or just want to chat about your pet's privacy, feel free to reach out to us:</p>
+    <p class="highlight">Email: <a href="mailto:privacy@vetapp.com">privacy@vetcare.com</a></p>
+    <p class="highlight">Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    <p class="highlight"><a href="@Url.Action("ContactUs", "Home")">Contact Us</a></p>
+    <p class="text-muted">We’re always happy to hear from fellow pet lovers!</p>
+</div>

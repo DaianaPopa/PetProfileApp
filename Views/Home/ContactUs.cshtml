@@ -1,0 +1,147 @@
+﻿@model PetProfileApp.Models.ContactFormModel
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<!-- Contact Us Page Styles -->
+<style>
+    /* Page Title */
+    h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #333;
+        font-weight: bold;
+    }
+
+    /* Form Styling */
+    .contact-form {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        background-color: #fff;
+        transition: border 0.3s ease;
+    }
+
+        .form-control:focus {
+            border: 1px solid #ff6f00;
+            outline: none;
+        }
+
+    .btn-primary {
+        background-color: peru;
+        color: white;
+        padding: 12px 25px;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        border: none;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            background-color: #ff4500;
+        }
+
+    .text-danger {
+        font-size: 0.9rem;
+        color: red;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    /* Success Message */
+    .success-message {
+        font-size: 1.2rem;
+        color: green;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    }
+</style>
+
+<!-- Contact Form Section -->
+<div class="container">
+    <h2>Contact Us</h2>
+
+    @using (Html.BeginForm("Submit", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="contact-form">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Your Name" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Your Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Phone)
+                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Your Phone" })
+                @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Message)
+                @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Your Message", rows = 4 })
+                @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.VeterinarianNotes)
+                @Html.TextAreaFor(m => m.VeterinarianNotes, new { @class = "form-control", placeholder = "Special Notes for the Veterinarian", rows = 4 })
+                @Html.ValidationMessageFor(m => m.VeterinarianNotes, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn-primary">Submit</button>
+
+            @if (ViewData["SuccessMessage"] != null)
+            {
+                <div class="success-message">
+                    @ViewData["SuccessMessage"]
+                </div>
+            }
+        </div>
+    }
+</div>
+

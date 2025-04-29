@@ -1,0 +1,106 @@
+﻿@model IEnumerable<PetProfileApp.Models.PetProfile>
+
+@{
+    ViewData["Title"] = "All Registered Pets";
+}
+
+<style>
+    .pets-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .pets-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 40px;
+    }
+
+    .pet-card {
+        display: flex;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: transform 0.2s ease;
+    }
+
+        .pet-card:hover {
+            transform: scale(1.01);
+        }
+
+    .pet-photo {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+        object-fit: cover;
+        margin-right: 20px;
+        border: 2px solid #dee2e6;
+    }
+
+    .pet-details {
+        flex-grow: 1;
+    }
+
+        .pet-details h5 {
+            margin-bottom: 5px;
+            font-weight: 700;
+            color: #343a40;
+        }
+
+        .pet-details p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+    .no-pets {
+        text-align: center;
+        font-size: 1.2rem;
+        padding: 40px;
+        color: #777;
+    }
+</style>
+
+<div class="pets-container">
+    <h2 class="pets-title">🐾 All Registered Pets</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="no-pets">
+            <p>No pets registered yet.</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var pet in Model)
+        {
+            <div class="pet-card">
+                @if (pet.PetPhoto != null && pet.PetPhoto.Length > 0)
+                {
+                    var base64 = Convert.ToBase64String(pet.PetPhoto);
+                    var imageSrc = $"data:image/png;base64,{base64}";
+                    <img src="@imageSrc" alt="Pet Photo" class="pet-photo" />
+                }
+                else
+                {
+                    <div class="pet-photo d-flex align-items-center justify-content-center bg-light text-muted">No Photo</div>
+                }
+
+                <div class="pet-details">
+                    <h5>@pet.PetName</h5>
+                    <p><strong>Breed:</strong> @pet.PetBreed</p>
+                    <p><strong>Age:</strong> @pet.PetAge</p>
+                    <p><strong>Owner:</strong> @pet.OwnerName</p>
+                    <p><strong>Phone:</strong> @pet.TelNumber</p>
+                    <p><strong>Medical Info:</strong> @pet.MedicalInfo</p>
+                </div>
+            </div>
+        }
+    }
+</div>

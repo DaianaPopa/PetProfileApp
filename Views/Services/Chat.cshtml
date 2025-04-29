@@ -1,0 +1,221 @@
+﻿@{
+    ViewBag.Title = "Live Chat with Vet";
+}
+
+<style>
+    body {
+        background-color: #f8f9fc;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .chat-wrapper {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        color: #5a3825;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.2rem;
+    }
+
+    .chat-instructions {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 25px;
+    }
+
+    #chatBox {
+        height: 350px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #fefefe;
+        margin-bottom: 20px;
+    }
+
+        #chatBox p {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+/* 
+    keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    } */
+
+    }
+
+    .chat-input-container {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    #user, #message {
+        padding: 12px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+
+    #user {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    #message {
+        flex: 3;
+        min-width: 250px;
+    }
+
+    .btn-primary {
+        background-color: peru;
+        border: none;
+        color: white;
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: saddlebrown;
+        }
+
+    .video-call-section {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .video-call-btn {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .video-call-btn:hover {
+            background-color: #218838;
+        }
+
+    #video-container {
+        display: none;
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    video {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+</style>
+
+<div class="chat-wrapper">
+    <h2>Live Chat with a Vet</h2>
+    <div class="chat-instructions">
+        Ask your questions below and our team will respond as soon as possible.<br />
+        If needed, you can start a video consultation after.
+    </div>
+
+    <div id="chatBox">
+        <!-- Messages appear here -->
+    </div>
+
+    <div class="chat-input-container">
+        <input type="text" id="user" placeholder="Your name..." />
+        <input type="text" id="message" placeholder="Write your message..." />
+        <button class="btn-primary" id="sendMessage">Send</button>
+    </div>
+
+    <div class="video-call-section">
+        <button class="video-call-btn" id="startVideoCall">Start Video Call</button>
+
+        <div id="video-container">
+            <video id="local-video" autoplay muted></video>
+            <video id="remote-video" autoplay></video>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/signalr/2.4.2/jquery.signalR.min.js"></script>
+
+<script>
+    $(function () {
+        var connection = $.hubConnection();
+        var chatHub = connection.createHubProxy('chatHub');
+
+        chatHub.on('broadcastMessage', function (user, message) {
+            $('#chatBox').append('<p><strong>' + user + ':</strong> ' + message + '</p>');
+            $('#chatBox').scrollTop($('#chatBox')[0].scrollHeight);
+        });
+
+        connection.start().done(function () {
+            $('#sendMessage').click(function () {
+                var user = $('#user').val();
+                var message = $('#message').val();
+                if (user && message) {
+                    chatHub.invoke('SendMessage', user, message);
+                    $('#message').val('');
+                }
+            });
+        });
+
+        var localVideo = document.getElementById('local-video');
+        var remoteVideo = document.getElementById('remote-video');
+        var videoContainer = document.getElementById('video-container');
+        var startVideoCallBtn = document.getElementById('startVideoCall');
+        var peerConnection;
+        var localStream;
+
+        startVideoCallBtn.addEventListener('click', function () {
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(function (stream) {
+                    localStream = stream;
+                    localVideo.srcObject = stream;
+                    videoContainer.style.display = 'block';
+                    startVideoCallBtn.style.display = 'none';
+
+                    peerConnection = new RTCPeerConnection();
+                    peerConnection.addStream(localStream);
+                    peerConnection.onaddstream = function (event) {
+                        remoteVideo.srcObject = event.stream;
+                    };
+                })
+                .catch(function (err) {
+                    console.error('Error accessing camera/microphone', err);
+                });
+        });
+    });
+</script>

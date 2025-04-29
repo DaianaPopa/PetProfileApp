@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PetProfileApp</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   @*  <link rel="stylesheet" href="~/PetProfileApp.styles.css" asp-append-version="true" /> *@
+    <link rel="icon" href="/images/logo.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light border-bottom shadow-sm mb-3">
+            <div class="container-fluid">
+                <img src="/images/logo.png" alt="Veterinary Clinic Logo" class="img-fluid" style="max-height: 50px;">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">VetApp🐾</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                       
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Services">Services</a>
+                        </li>
+                       
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="registerDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Patient Center
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="registerDropdown">
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="PatientCenter">Patient Center</a></li>
+                                <li><a class="dropdown-item" asp-controller="Services" asp-action="Chat">Talk with vet</a></li>
+                                <li><a class="dropdown-item" asp-controller="PetBiometric" asp-action="Scan">Scan a Pet</a></li>
+                                <li><a class="dropdown-item" asp-controller="Services" asp-action="Payment">Manage Payments</a></li>
+                                <li><a class="dropdown-item" asp-controller="Services" asp-action="Appointment">Appointments</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="registerDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Register
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="registerDropdown">
+                                <li><a class="dropdown-item" asp-controller="PetProfile" asp-action="Create">Register a Pet</a></li>
+                                <li><a class="dropdown-item" asp-controller="PetProfile" asp-action="ViewPets">View Pets</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="AboutUs">About Us</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="social-links">
+                <p>
+                    &copy; 2025 - VetsAPP -
+                    <a asp-controller="Home" asp-action="Privacy" class="footer-link">Privacy</a> -
+                    <a asp-controller="Home" asp-action="ContactUs" class="footer-link">Contact Us</a>
+                </p>
+            </div>
+            <div class="social-links">
+                <p>Follow us on</p>
+                <a href="https://facebook.com" target="_blank" class="social-link">Facebook</a> |
+                <a href="https://twitter.com" target="_blank" class="social-link">Twitter</a> |
+                <a href="https://instagram.com" target="_blank" class="social-link">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

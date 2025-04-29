@@ -1,0 +1,199 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+
+<style>
+    /* Global Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f4f7;
+    }
+
+    /* About Us Page Section */
+    .about-us {
+        background-color: #ffffff;
+        padding: 60px 20px;
+        text-align: center;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* About Us Title */
+    .about-us-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        color: #2C3E50;
+        margin-bottom: 30px;
+    }
+
+    /* About Us Text */
+    .about-us-text {
+        font-size: 1.25rem;
+        color: #7f8c8d;
+        margin-bottom: 40px;
+        line-height: 1.8;
+        max-width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* About Us Subtitle */
+    .about-us-subtitle {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        color: #333;
+    }
+
+    /* About Us Values List */
+    .about-us-values {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 40px;
+        text-align: left;
+        font-size: 1.1rem;
+        color: #555;
+        display: inline-block;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+        .about-us-values li {
+            margin-bottom: 15px;
+        }
+
+    /* About Us Team Section */
+    .about-us-team {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+    }
+
+    /* Team Member */
+    .team-member {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 280px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    .team-member-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 3px solid #2C3E50;
+    }
+
+    .team-member-name {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #2C3E50;
+        margin-bottom: 10px;
+    }
+
+    .team-member-role {
+        font-size: 1.1rem;
+        color: #FF6F00;
+        margin-bottom: 15px;
+    }
+
+    .team-member-bio {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.6;
+    }
+
+    /* Why Choose Us Section */
+    .why-choose-us {
+        background-color: peru;
+        color: white;
+        padding: 40px 20px;
+        margin-top: 40px;
+        text-align: center;
+    }
+
+        .why-choose-us h3 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .why-choose-us p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+    /* Responsive Design */
+    .about-us-subtitle {
+        font-size: 1.8rem;
+    }
+
+    .about-us-values {
+        font-size: 1rem;
+    }
+
+    .team-member {
+        width: 250px;
+    }
+
+    }
+</style>
+
+<section class="about-us">
+    <div class="container">
+        <h2 class="about-us-title">About Us</h2>
+        <p class="about-us-text">
+            At Vet Care, our mission is to provide the best care for your pets. We are a team of passionate veterinarians and pet lovers committed to improving the health and well-being of every furry friend. Whether it's routine checkups or specialized treatment, we are here to support you and your pet every step of the way.
+        </p>
+
+        <h3 class="about-us-subtitle">Our Values</h3>
+        <ul class="about-us-values">
+            <li>Compassionate care</li>
+            <li>Expertise in animal health</li>
+            <li>Accessible services</li>
+            <li>Community involvement</li>
+        </ul>
+
+        <h3 class="about-us-subtitle">Meet Our Team</h3>
+        <div class="about-us-team">
+            <div class="team-member">
+                <img src="/images/staff2.jpg" alt="Dr. John Doe" class="team-member-img">
+                <h4 class="team-member-name">Dr. John Doe</h4>
+                <p class="team-member-role">Veterinarian</p>
+                <p class="team-member-bio">Dr. John Doe has over 10 years of experience in animal care and specializes in surgery and emergency medicine.</p>
+            </div>
+
+            <div class="team-member">
+                <img src="/images/staff3.jpg" alt="Dr. Jane Smith" class="team-member-img">
+                <h4 class="team-member-name">Dr. Jane Smith</h4>
+                <p class="team-member-role">Veterinarian</p>
+                <p class="team-member-bio">Dr. Jane Smith is passionate about preventive care and has a special interest in dermatology and internal medicine.</p>
+            </div>
+        </div>
+
+        <div class="why-choose-us">
+            <h3>Why Choose Us?</h3>
+            <p>We understand that your pet is a beloved member of your family, and we are committed to providing the highest standard of veterinary care. Our app includes live chat, biometric ID services, and our clinic is equipped with modern diagnostic tools and treatment options. We provide personalized care tailored to each pet’s unique needs.</p>
+        </div>
+
+    </div>
+</section>
+

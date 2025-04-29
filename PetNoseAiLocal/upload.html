@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet Identifier</title>
+</head>
+<body>
+    <h2>Upload an image of a pet</h2>
+    <form action="http://127.0.0.1:5000/identify" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required><br><br>
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>

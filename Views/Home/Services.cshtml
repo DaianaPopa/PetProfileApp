@@ -1,0 +1,204 @@
+﻿@{
+    ViewData["Title"] = "Services";
+}
+
+<style>
+    /* Global Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f4f7;
+    }
+
+    /* Service Section Styles */
+    .services {
+        padding: 80px 20px;
+        text-align: center;
+        background-color: #ffffff;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .services-title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #2C3E50;
+        margin-bottom: 20px;
+    }
+
+    .services-description {
+        font-size: 1.25rem;
+        color: #7f8c8d;
+        margin-bottom: 40px;
+        line-height: 1.8;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Services Grid Layout */
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        justify-items: center;
+        margin-top: 30px;
+    }
+
+    /* Service Card Styles */
+    .service-card {
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        max-width: 300px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+    .service-icon {
+        margin-bottom: 20px;
+    }
+
+        .service-icon img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+    .service-title {
+        font-size: 1.75rem;
+        font-weight: bold;
+        color: #2C3E50;
+        margin-bottom: 15px;
+    }
+
+    .service-description {
+        font-size: 1rem;
+        color: #7f8c8d;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    /* Register Button Styles */
+    .btn-register {
+        background-color: peru;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        font-size: 18px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+        margin-top: 40px;
+    }
+
+        .btn-register:hover {
+            background-color: #45a049;
+        }
+
+    /* Responsive Design for Mobile */
+ 
+    .services-description {
+        font-size: 1.1rem;
+    }
+
+    .service-card {
+        padding: 20px;
+    }
+
+    .service-title {
+        font-size: 1.5rem;
+    }
+
+    .service-description {
+        font-size: 0.95rem;
+    }
+
+    }
+</style>
+
+<section class="services">
+    <div class="container">
+        <h2 class="services-title">Our Services</h2>
+        <p class="services-description">
+            At VetsAPP, we offer a wide range of veterinary services to keep your pets healthy and happy. From routine checkups to emergency care, we are here to serve your furry friends.
+        </p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="/images/checkup.jpg" alt="Checkup Icon">
+                </div>
+                <h3 class="service-title">Routine Checkups</h3>
+                <p class="service-description">
+                    Regular checkups help ensure your pet stays healthy. Our team will give your pet the care they need to live a long, happy life.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="/images/puppy-and-cat.jpg" alt="Surgery Icon">
+                </div>
+                <h3 class="service-title">Surgery</h3>
+                <p class="service-description">
+                    Our clinic is equipped with the latest tools and technology for safe and effective surgical procedures for your pet.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="/images/emergency.jpg" alt="Emergency Care Icon">
+                </div>
+                <h3 class="service-title">Emergency Care</h3>
+                <p class="service-description">
+                    We provide emergency veterinary care to your pet when they need it most. Our team is available to help 24/7.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="/images/dental.jpg" alt="Dental Care Icon">
+                </div>
+                <h3 class="service-title">Dental Care</h3>
+                <p class="service-description">
+                    Routine dental exams, cleanings, and treatments to maintain healthy teeth and gums for your pet.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="/images/about us.png" alt="Nutrition Icon">
+                </div>
+                <h3 class="service-title">Nutrition & Weight Management</h3>
+                <p class="service-description">
+                    We offer nutritional counseling and weight management programs to keep your pet at a healthy weight and prevent obesity-related conditions.
+                </p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="/images/pharmacy.jpg" alt="Pharmacy Icon">
+                </div>
+                <h3 class="service-title">Pharmacy</h3>
+                <p class="service-description">
+                    We have an in-house pharmacy to provide you with the medications your pet needs to recover or maintain a healthy lifestyle.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div>
+    <!-- Register Button -->
+    <a class="btn-register" asp-area="Identity" asp-page="/Account/Register">Register for Our Services</a>
+</div>

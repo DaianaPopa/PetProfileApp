@@ -1,0 +1,307 @@
+﻿@{
+    ViewData["Title"] = "Payment";
+}
+
+<style>
+    /* Global styles */
+    body {
+        background-color: #f4f7fc;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container-payment {
+        display: flex;
+        background-color: #fff;
+        max-width: 1100px;
+        margin: 20px auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    /* Left section - Payment Form */
+    .payment-form-container {
+        flex: 2;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: peru;
+        margin-bottom: 30px;
+    }
+
+    .details-section, .payment-section {
+        margin-bottom: 30px;
+    }
+
+        .details-section h2, .payment-section h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .details-section p, .payment-section p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+    .payment-form input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+    }
+
+    .payment-button {
+        width: 100%;
+        padding: 15px;
+        background-color: peru;
+        color: white;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+        .payment-button:hover {
+            background-color: saddlebrown;
+        }
+
+    .error-message {
+        color: red;
+        font-size: 14px;
+        display: none;
+    }
+
+    /* Sidebar for Payment History */
+    .payment-history-container {
+        flex: 1;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .payment-history-container h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+    .payment-history-item {
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .payment-history-item p {
+            font-size: 16px;
+            color: #555;
+        }
+
+    /* Google Pay Button */
+    .google-pay-button {
+        background-color: #4285f4;
+        color: white;
+        padding: 12px;
+        font-size: 18px;
+        width: 100%;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        margin-top: 10px;
+    }
+
+        .google-pay-button:hover {
+            background-color: #357ae8;
+        }
+
+    /* Unsubscribe Button */
+    .unsubscribe-button {
+        width: 100%;
+        padding: 15px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+        .unsubscribe-button:hover {
+            background-color: #c0392b;
+        }
+</style>
+
+<div class="container-payment">
+    <!-- Payment Form Section -->
+    <div class="payment-form-container">
+        <h1>Pay for Prescription or Subscription</h1>
+
+        <!-- Item details section -->
+        <div class="details-section">
+            <h2>Prescription/Subscription Details</h2>
+            <p><strong>Item:</strong> @TempData["ItemName"]</p>
+            <p><strong>Description:</strong> @TempData["ItemDescription"]</p>
+            <p><strong>Total Amount:</strong> $@TempData["Amount"]</p>
+        </div>
+
+        <!-- Payment form section -->
+        <div class="payment-section">
+            <h2>Payment Details</h2>
+
+            <form id="paymentForm">
+                <div class="payment-form">
+                    <!-- Card details form using Stripe Elements -->
+                    <div id="card-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                    </div>
+
+                    <div class="error-message" id="card-errors" role="alert"></div>
+                </div>
+
+                <!-- Payment Methods -->
+                <button type="submit" class="payment-button" id="submitBtn">Pay with Card</button>
+                <!-- Google Pay Button -->
+                <button type="button" class="google-pay-button" id="googlePayBtn">Pay with Google Pay</button>
+            </form>
+
+            <!-- Unsubscribe Button (Visible if User is Subscribed) -->
+            <button class="unsubscribe-button" id="unsubscribeBtn" style="display: none;" onclick="unsubscribe()">Unsubscribe</button>
+        </div>
+    </div>
+
+    <!-- Payment History Sidebar -->
+    <div class="payment-history-container">
+        <h2>Payment History</h2>
+
+        <!-- List of previous payments -->
+        <div class="payment-history-item">
+            <p><strong>Item:</strong> Prescription 1</p>
+            <p><strong>Status:</strong> Paid</p>
+            <p><strong>Date:</strong> 2025-03-30</p>
+        </div>
+        <div class="payment-history-item">
+            <p><strong>Item:</strong> Subscription 2</p>
+            <p><strong>Status:</strong> Active</p>
+            <p><strong>Date:</strong> 2025-02-25</p>
+        </div>
+        <div class="payment-history-item">
+            <p><strong>Item:</strong> Prescription 3</p>
+            <p><strong>Status:</strong> Paid</p>
+            <p><strong>Date:</strong> 2025-01-15</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    // Initialize Stripe
+    var stripe = Stripe('your_stripe_publishable_key'); // Replace with your Stripe Publishable Key
+    var elements = stripe.elements();
+
+    // Create an instance of the card Element
+    var card = elements.create('card');
+    card.mount('#card-element');
+
+    // Handle form submission
+    var paymentForm = document.getElementById('paymentForm');
+    var cardErrors = document.getElementById('card-errors');
+    var submitButton = document.getElementById('submitBtn');
+    var unsubscribeBtn = document.getElementById('unsubscribeBtn');
+
+    paymentForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        stripe.createPaymentMethod('card', card).then(function(result) {
+            if (result.error) {
+                // Display error message to the user
+                cardErrors.textContent = result.error.message;
+                cardErrors.style.display = 'block';
+            } else {
+                // Proceed with creating the payment intent
+                createPaymentIntent(result.paymentMethod.id);
+            }
+        });
+    });
+
+    // Create payment intent and handle the payment
+    function createPaymentIntent(paymentMethodId) {
+        fetch('/Payment/CreatePaymentIntent', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                paymentMethodId: paymentMethodId,
+                amount: parseFloat('@TempData["Amount"]') * 100, // Amount in cents
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                // Handle error
+                cardErrors.textContent = data.error;
+                cardErrors.style.display = 'block';
+            } else {
+                // Confirm the payment
+                stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: paymentMethodId,
+                }).then(function(result) {
+                    if (result.error) {
+                        cardErrors.textContent = result.error.message;
+                        cardErrors.style.display = 'block';
+                    } else {
+                        if (result.paymentIntent.status === 'succeeded') {
+                            alert('Payment Successful!');
+                            window.location.href = '/Payment/Success'; // Redirect to success page
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    // Google Pay Button (Placeholder action)
+    document.getElementById('googlePayBtn').addEventListener('click', function() {
+        alert('Google Pay functionality is not yet implemented.');
+    });
+
+    // Show the unsubscribe button if the user is subscribed
+    function checkSubscriptionStatus() {
+        // Logic to check if the user is subscribed
+        var isSubscribed = true; // For example, based on user data or API response
+
+        if (isSubscribed) {
+            unsubscribeBtn.style.display = 'block';
+        }
+    }
+
+    // Unsubscribe function
+    function unsubscribe() {
+        // Unsubscribe logic (call backend API to unsubscribe)
+        alert("You have been unsubscribed.");
+        unsubscribeBtn.style.display = 'none'; // Hide the unsubscribe button after unsubscribing
+    }
+
+    // Call the function to check the subscription status when the page loads
+    window.onload = function() {
+        checkSubscriptionStatus();
+    }
+</script>
+
