@@ -1,7 +1,9 @@
 #PetProfile App
+
 PetProfile is a web application designed to help pet owners manage their pets' health and identity through biometric recognition. The platform enables users to book vet appointments, chat with professionals, create pet profiles, and even identify lost pets using advanced facial and nose scan technology.
 
 ##Features
+
 - Create Pet Profiles
 Store important pet data including name, age, breed, and medical history.
 
@@ -21,6 +23,7 @@ If someone finds a pet, they can scan its face. If it's in the database, the app
 Integrated payment functionality for appointments and services.
 
 ##Tech Stack
+
 Frontend & Backend: ASP.NET (C#) with CVM 
 
 AI Model: Flask API for facial/biometric recognition
@@ -28,6 +31,7 @@ AI Model: Flask API for facial/biometric recognition
 Database: local SQL Server
 
 ##Future Improvements
+
 User authentication and role-based access (e.g., pet owners, vets, admins)
 
 Enhanced encryption and privacy for contact and medical data
