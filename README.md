@@ -1,6 +1,6 @@
 # PetProfile App ✅
 
-PetProfile is a web application designed to help pet owners manage their pets' health and identity through biometric recognition. The platform enables users to book vet appointments, chat with professionals, create pet profiles, and even identify lost pets using advanced facial and nose scan technology. All artefacts are in documentation folder.
+PetProfile is a web application designed to help pet owners manage their pets' health and identity through biometric recognition. The platform enables users to book vet appointments, chat with professionals, create pet profiles, and even identify lost pets using advanced facial and nose scan technology. All artefacts are in dev project folder.
 
 ## Features ✅
 
